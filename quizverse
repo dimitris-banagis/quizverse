@@ -145,3 +145,122 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - QuizVerse</title>
+  <style>
+    body {
+      background-color: #121230;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .quiz-box {
+      background-color: #2c2c5a;
+      padding: 30px;
+      border-radius: 10px;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .question {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .option {
+      background-color: #4e8cff;
+      border: none;
+      color: white;
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background-color: #3678e0;
+    }
+
+    #next-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #00b894;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-box">
+    <div class="question" id="question">Ερώτηση εδώ</div>
+    <div id="options">
+      <!-- Επιλογές θα μπαίνουν εδώ -->
+    </div>
+    <button id="next-btn" onclick="nextQuestion()">Επόμενη</button>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Ποιος πλανήτης είναι ο τέταρτος από τον ήλιο;",
+        options: ["Αφροδίτη", "Άρης", "Δίας", "Ποσειδώνας"],
+        correct: 1
+      },
+      {
+        question: "Πόσο κάνει 12 x 8;",
+        options: ["96", "86", "108", "88"],
+        correct: 0
+      },
+      // +8 ακόμα ερωτήσεις για πλήρες quiz 10 ερωτήσεων
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = quizData[current];
+      document.getElementById("question").textContent = `Ερώτηση ${current + 1}: ${q.question}`;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.className = "option";
+        btn.onclick = () => checkAnswer(i);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[current].correct;
+      if (selected === correct) score++;
+      document.querySelectorAll(".option").forEach(btn => btn.disabled = true);
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < quizData.length) {
+        showQuestion();
+      } else {
+        document.querySelector(".quiz-box").innerHTML = `<h2>Τέλος!</h2><p>Σκορ: ${score} / ${quizData.length}</p>`;
+      }
+    }
+
+    showQuestion(); // Έναρξη quiz
+  </script>
+
+</body>
+</html>
