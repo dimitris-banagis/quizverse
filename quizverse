@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizVerse</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0d0d2b, #1e1e42);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #4e8cff;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #3678e0;
+    }
+
+    .category {
+      background-color: #2e2e57;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Επιλογή γλώσσας -->
+  <div id="language-screen">
+    <h1>🌍 QuizVerse</h1>
+    <p>Διάλεξε γλώσσα / Choose your language:</p>
+    <select id="language-select">
+      <option disabled selected>-- Επιλογή / Select --</option>
+      <option value="el">Ελληνικά</option>
+      <option value="en">English</option>
+    </select><br>
+    <button onclick="enterQuiz()">Συνέχεια / Continue</button>
+  </div>
+
+  <!-- Κυρίως περιεχόμενο -->
+  <div id="main-content" class="hidden">
+    <h1>✨ QuizVerse</h1>
+    <p>Διάλεξε θέμα & επίπεδο δυσκολίας. Κάθε επίπεδο περιέχει **10 ερωτήσεις**.</p>
+
+    <div class="category">
+      <h2>🚀 Διάστημα</h2>
+      <label for="space-difficulty">Επίπεδο δυσκολίας:</label><br>
+      <select id="space-difficulty">
+        <option disabled selected>Διάλεξε επίπεδο</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select><br>
+      <button>Ξεκίνα</button>
+    </div>
+
+    <div class="category">
+      <h2>➗ Μαθηματικά</h2>
+      <label for="math-difficulty">Επίπεδο δυσκολίας:</label><br>
+      <select id="math-difficulty">
+        <option disabled selected>Διάλεξε επίπεδο</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select><br>
+      <button>Ξεκίνα</button>
+    </div>
+
+    <div class="category">
+      <h2>🌍 Διάφορα</h2>
+      <label for="general-difficulty">Επίπεδο δυσκολίας:</label><br>
+      <select id="general-difficulty">
+        <option disabled selected>Διάλεξε επίπεδο</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select><br>
+      <button>Ξεκίνα</button>
+    </div>
+  </div>
+
+  <script>
+    function enterQuiz() {
+      const lang = document.getElementById("language-select").value;
+      if (lang === "el" || lang === "en") {
+        document.getElementById("language-screen").classList.add("hidden");
+        document.getElementById("main-content").classList.remove("hidden");
+      } else {
+        alert("Παρακαλώ διάλεξε γλώσσα.");
+      }
+    }
+  </script>
+
+</body>
+</html>
